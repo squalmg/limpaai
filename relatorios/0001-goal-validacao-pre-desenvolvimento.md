@@ -214,3 +214,34 @@ Próxima ação:
 ---
 
 Desenvolvido por Clan Digital — https://clanmarketing.com.br
+
+---
+
+# 10. Decisões preliminares adicionadas
+
+## Região piloto
+
+Hipótese escolhida:
+
+- Águas Lindas;
+- Ceilândia;
+- Taguatinga.
+
+A ativação deverá ocorrer progressivamente e depender de oferta suficiente.
+
+Documento:
+
+- planning/REGIAO-PILOTO.md
+
+## Preços
+
+Foi criada uma tabela preliminar para pesquisa.
+
+Os valores ainda não estão validados e não devem ser divulgados como preços
+definitivos.
+
+Documento:
+
+- planning/TABELA-PRECOS-HIPOTESE.md
+
+STATUS DO GOAL: EM ANDAMENTO
