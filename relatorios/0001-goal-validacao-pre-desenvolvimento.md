@@ -245,3 +245,44 @@ Documento:
 - planning/TABELA-PRECOS-HIPOTESE.md
 
 STATUS DO GOAL: EM ANDAMENTO
+
+---
+
+# 11. Aplicação local de pesquisa criada
+
+Foi criada a pasta:
+
+- validation-app/
+
+Funcionalidades:
+
+- formulário de clientes;
+- formulário de profissionais;
+- armazenamento local em JSON;
+- painel de consolidação;
+- cálculo automático dos principais percentuais;
+- exportação CSV;
+- health check.
+
+Proteção de dados:
+
+- arquivos JSON de respostas ignorados pelo Git;
+- nenhuma resposta real deve ser publicada no repositório.
+
+Validações executadas:
+
+- instalação das dependências;
+- node --check;
+- GET /api/health;
+- GET /api/summary;
+- GET / com HTTP 200;
+- GET /client.html com HTTP 200;
+- GET /professional.html com HTTP 200;
+- GET /dashboard.html com HTTP 200.
+
+Importante:
+
+A ferramenta está pronta para coletar respostas, mas nenhuma hipótese está
+validada enquanto a amostra mínima não for atingida.
+
+STATUS DO GOAL: EM ANDAMENTO

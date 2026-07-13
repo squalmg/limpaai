@@ -35,3 +35,7 @@ temp/
 # Documentos sensíveis enviados por usuários
 storage/private/
 uploads/private/
+
+# Dados locais da pesquisa LimpaAí
+validation-app/data/*.json
+validation-app/data/*.tmp

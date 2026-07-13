@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel de validação — LimpaAí</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Painel de validação</h1>
+  <p>Percentuais calculados a partir das respostas locais.</p>
+  <nav><a href="/">Início</a><a href="/client.html">Clientes</a><a href="/professional.html">Profissionais</a></nav>
+</div></header>
+<main>
+  <section class="card">
+    <h2>Amostras</h2>
+    <div id="samples" class="metrics"></div>
+  </section>
+  <section class="card">
+    <h2>Clientes</h2>
+    <div id="client-metrics" class="metrics"></div>
+  </section>
+  <section class="card">
+    <h2>Profissionais</h2>
+    <div id="professional-metrics" class="metrics"></div>
+  </section>
+  <section class="card">
+    <h2>Exportação</h2>
+    <p><a class="button" href="/api/export/clients.csv">Baixar clientes em CSV</a></p>
+    <p><a class="button" href="/api/export/professionals.csv">Baixar profissionais em CSV</a></p>
+  </section>
+</main>
+<script>
+"use strict";
+
+function metricCard(label, value, target) {
+  const ok = Number(value) >= Number(target);
+  return `
+    <article class="metric">
+      <span>${label}</span>
+      <strong class="${ok ? "status-ok" : "status-pending"}">${value}%</strong>
+      <small>Meta: ${target}% — ${ok ? "atingida" : "pendente"}</small>
+    </article>`;
+}
+
+function sampleCard(label, value, target) {
+  const ok = Number(value) >= Number(target);
+  return `
+    <article class="metric">
+      <span>${label}</span>
+      <strong class="${ok ? "status-ok" : "status-pending"}">${value}</strong>
+      <small>Meta: ${target} — ${ok ? "atingida" : "pendente"}</small>
+    </article>`;
+}
+
+async function load() {
+  const response = await fetch("/api/summary");
+  const data = await response.json();
+
+  document.querySelector("#samples").innerHTML = [
+    sampleCard("Clientes", data.clients.total, data.targets.clients.minimumSample),
+    sampleCard("Profissionais", data.professionals.total, data.targets.professionals.minimumSample),
+    sampleCard("Candidatas ao piloto", data.professionals.counts.pilot, data.targets.professionals.minimumPilotCandidates),
+  ].join("");
+
+  document.querySelector("#client-metrics").innerHTML = [
+    metricCard("Dificuldade relevante", data.clients.metrics.difficulty, data.targets.clients.difficulty),
+    metricCard("Usariam a plataforma", data.clients.metrics.platform, data.targets.clients.platform),
+    metricCard("Aceitam taxa de 10%", data.clients.metrics.fee, data.targets.clients.fee),
+    metricCard("Confiança ou segurança", data.clients.metrics.trustOrSecurity, 50),
+    metricCard("Aceitam antecipado", data.clients.metrics.prepaid, 50),
+    metricCard("Participariam do piloto", data.clients.metrics.pilot, 40),
+  ].join("");
+
+  document.querySelector("#professional-metrics").innerHTML = [
+    metricCard("Interesse na plataforma", data.professionals.metrics.platform, data.targets.professionals.platform),
+    metricCard("Aceitam treinamento", data.professionals.metrics.training, data.targets.professionals.training),
+    metricCard("Aceitam documentos", data.professionals.metrics.documents, data.targets.professionals.documents),
+    metricCard("Aceitam comissão", data.professionals.metrics.commission, data.targets.professionals.commission),
+    metricCard("Valorizam liberdade", data.professionals.metrics.freedom, data.targets.professionals.freedom),
+    metricCard("Participariam do piloto", data.professionals.metrics.pilot, 40),
+  ].join("");
+}
+
+load().catch((error) => {
+  document.querySelector("main").insertAdjacentHTML(
+    "afterbegin",
+    `<div class="notice error">Falha ao carregar o painel: ${error.message}</div>`
+  );
+});
+</script>
+</body>
+</html>

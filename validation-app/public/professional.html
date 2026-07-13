@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesquisa de profissionais — LimpaAí</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Pesquisa com profissionais</h1>
+  <p>Entrevista de validação do LimpaAí.</p>
+  <nav><a href="/">Início</a><a href="/client.html">Clientes</a><a href="/dashboard.html">Painel</a></nav>
+</div></header>
+<main>
+  <div id="notice" class="notice"></div>
+  <form id="research-form">
+    <section class="card grid">
+      <label>Cidade *<input name="city" required></label>
+      <label>Bairro *<input name="neighborhood" required></label>
+      <label>Nome ou código<input name="respondentCode"></label>
+      <label>Anos de experiência *<input name="yearsExperience" type="number" min="0" required></label>
+      <label>Dias que gostaria de preencher por semana<input name="desiredDaysPerWeek" type="number" min="0" max="7"></label>
+      <label>Distância máxima em km<input name="maximumDistanceKm" type="number" min="0"></label>
+    </section>
+
+    <section class="card">
+      <fieldset>
+        <legend>Serviços realizados</legend>
+        <div class="checks">
+          <label><input type="checkbox" name="services" value="Faxina"> Faxina</label>
+          <label><input type="checkbox" name="services" value="Organização"> Organização</label>
+          <label><input type="checkbox" name="services" value="Passar roupas"> Passar roupas</label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="card grid">
+      <label>Usaria a plataforma? *
+        <select name="platformInterest" required><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+      <label>Valoriza liberdade para recusar?
+        <select name="valuesFreedom"><option value="">Selecione</option><option>Sim</option><option>Não</option></select>
+      </label>
+      <label>Aceita enviar documentos?
+        <select name="acceptsDocuments"><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+      <label>Aceita treinamento presencial?
+        <select name="acceptsTraining"><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+      <label>Aceita primeira diária acompanhada?
+        <select name="acceptsFirstDayFollowUp"><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+      <label>Aceita comissão progressiva?
+        <select name="acceptsProgressiveCommission"><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+      <label>Aceita receber em até 2 dias úteis?
+        <select name="acceptsTwoDayPayout"><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+      <label>Participaria do piloto?
+        <select name="pilotInterest"><option value="">Selecione</option><option>Sim</option><option>Talvez</option><option>Não</option></select>
+      </label>
+    </section>
+
+    <section class="card grid">
+      <label>Valor atual da diária<input name="currentDailyRate" type="number" min="0" step="0.01"></label>
+      <label>Comissão considerada justa (%)<input name="fairCommissionPercent" type="number" min="0" max="100"></label>
+      <label>Quanto cobraria para levar produtos<input name="productsExtraPrice" type="number" min="0" step="0.01"></label>
+      <label>Forma preferida de cobrança<select name="preferredFeeModel"><option value="">Selecione</option><option>Comissão por serviço</option><option>Mensalidade</option><option>Taxa fixa por indicação</option></select></label>
+    </section>
+
+    <section class="card">
+      <label>Regiões que aceita atender<textarea name="serviceRegions"></textarea></label>
+      <label>Maior dificuldade para conseguir serviços<textarea name="mainProblem"></textarea></label>
+      <label>Maior receio com a plataforma<textarea name="mainConcern"></textarea></label>
+      <label>Observações<textarea name="notes"></textarea></label>
+      <label>Contato autorizado<input name="authorizedContact"></label>
+    </section>
+
+    <button class="primary" type="submit">Registrar resposta</button>
+  </form>
+</main>
+<script src="/common.js"></script>
+<script>
+  const form = document.querySelector("#research-form");
+  const notice = document.querySelector("#notice");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submitResearchForm(form, "professionals", notice);
+  });
+</script>
+</body>
+</html>
