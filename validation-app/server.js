@@ -7,6 +7,7 @@ const crypto = require("crypto");
 
 const app = express();
 const PORT = Number(process.env.PORT || 4173);
+const HOST = process.env.HOST || "127.0.0.1";
 const ROOT = __dirname;
 const DATA_DIR = path.join(ROOT, "data");
 const PUBLIC_DIR = path.join(ROOT, "public");

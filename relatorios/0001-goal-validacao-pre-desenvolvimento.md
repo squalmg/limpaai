@@ -286,3 +286,28 @@ A ferramenta está pronta para coletar respostas, mas nenhuma hipótese está
 validada enquanto a amostra mínima não for atingida.
 
 STATUS DO GOAL: EM ANDAMENTO
+
+---
+
+# 12. Operação da coleta preparada
+
+Foram adicionados:
+
+- script de inicialização local;
+- modo de acesso pela rede local;
+- script de encerramento;
+- backup de respostas;
+- exportação CSV;
+- guia operacional da coleta.
+
+Validações:
+
+- node --check aprovado;
+- inicialização aprovada;
+- health check aprovado;
+- backup aprovado;
+- encerramento aprovado.
+
+Nenhum dado fictício foi criado.
+
+STATUS DO GOAL: EM ANDAMENTO

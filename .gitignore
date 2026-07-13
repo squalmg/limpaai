@@ -39,3 +39,8 @@ uploads/private/
 # Dados locais da pesquisa LimpaAí
 validation-app/data/*.json
 validation-app/data/*.tmp
+
+# Runtime e backups locais da validação
+validation-app/.validation-app.pid
+relatorios/runtime/
+backups/validation-data/
