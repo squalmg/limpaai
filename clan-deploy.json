@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "project": "limpaai",
+  "defaultBranch": "clan-deploy-v2-bootstrap",
+  "dockerfile": "Dockerfile",
+  "context": ".",
+  "containerPort": 8080,
+  "healthPath": "/healthz",
+  "environments": ["staging", "production"],
+  "notes": "Primeiro workload nativo do Clan Deploy 2.0. Comecar apenas em staging."
+}
